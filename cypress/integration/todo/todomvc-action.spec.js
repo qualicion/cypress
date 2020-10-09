@@ -20,11 +20,12 @@ describe('Navigate the TodoMVC app', () => {
 })
 
 
-// describe('toggling todos', () => {
-//     it('should toggle test correctly', () => {
-
-//     })
-// })
+describe('toggling todos', () => {
+    it('should toggle test correctly', () => {
+        todoPage.toggleTodo(0);
+        todoPage.validateTodoCompletedState(0, true);
+    })
+})
 
     it('should be toggle the option entered', () => {
         cy.get('.toggle').click(); 
@@ -32,9 +33,8 @@ describe('Navigate the TodoMVC app', () => {
 })
 
     it('should be able to clear completed items', () => {
-
-        cy.get('.toggle').click();
-        cy.contains('Clear completed').click();
-        cy.get('.todo-list').should('not.have.descendants', 'li');
+        todoPage.toggleTodo(0);
+        todoPage.clearCompleted();
+        todoPage.validateNumberOfTodosShown(0);
      })
 })
