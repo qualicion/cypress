@@ -24,11 +24,23 @@ export class TodoPage {
         cy.contains('Clear completed').click()
       }
 
-      validateNumberOfTodosShown(expectedNumberOfTodos) {
+    showOnlyActiveTodos() {
+        cy.contains('Active').click()
+      }
+    
+    showOnlyCompletedTodos() {
+        cy.contains('Completed').click()
+      }
+
+      showAllTodos() {
+        cy.contains('All').click()
+      }
+
+    validateNumberOfTodosShown(expectedNumberOfTodos) {
         cy.get('.todo-list li').should('have.length', expectedNumberOfTodos)
       }
 
-      validateTodoCompletedState(todoIndex, shouldBeCompleted) {
+    validateTodoCompletedState(todoIndex, shouldBeCompleted) {
         const l = cy.get(`.todo-list li:nth-child(${todoIndex + 1}) label`);
         l.should(`${shouldBeCompleted ? '' : 'not.'}have.css`, 'text-decoration-line', 'line-through');
       }
